@@ -1,0 +1,77 @@
+﻿<Window x:Class="TextClassificator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TextClassificator"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="70*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Content="Загрузить эталонный научный текст" Command="{Binding LoadScience}"/>
+            <Button Grid.Row="1" Content="Загрузить эталонный художественный текст" Command="{Binding LoadFun}"/>
+            <Button Grid.Row="2" Content="Загрузить эталонный стихотворный текст" Command="{Binding LoadPoem}"/>
+            <Button Grid.Row="3" Content="Загрузить и проверить текст на принадлежность к классу" Command="{Binding LoadForCheck}"/>
+            <Button Grid.Row="4" Content="Загрузить и проверить тексты на принадлежность к классам" Command="{Binding LoadForCheckFiles}"/>
+            <Button Grid.Row="5" Content="Сбросить" Command="{Binding Clean}"/>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="170"/>
+                    <ColumnDefinition Width="170"/>
+                    <ColumnDefinition Width="270"/>
+                    <ColumnDefinition Width="170"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Margin="5" Text="Имя файла"/>
+                <TextBlock Grid.Column="1" Margin="5" Text="Тип файла"/>
+                <TextBlock Grid.Column="2" Margin="5" Text="Корреляция по 1 критерию"/>
+                <TextBlock Grid.Column="3" Margin="5" Text="Корреляция по 2 критерию"/>
+                <TextBlock Grid.Column="4" Margin="5" Text="Принадлежность классам"/>
+                <TextBlock Grid.Column="5" Margin="5" Text="Финальная проверка"/>
+            </Grid>
+            <ListBox Grid.Row="1" ItemsSource="{Binding Infos}" BorderBrush="Black">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="160"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="170"/>
+                                <ColumnDefinition Width="170"/>
+                                <ColumnDefinition Width="270"/>
+                                <ColumnDefinition Width="170"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Margin="5" Text="{Binding FileName}"/>
+                            <TextBlock Grid.Column="1" Margin="5" Text="{Binding Type}"/>
+                            <TextBlock Grid.Column="2" Margin="5" Text="{Binding CorrelationFirstCriteria}"/>
+                            <TextBlock Grid.Column="3" Margin="5" Text="{Binding CorrelationSecondCriteria}"/>
+                            <TextBlock Grid.Column="4" Margin="5" Text="{Binding FinalCheck}"/>
+                            <TextBlock Grid.Column="5" Margin="5" Text="{Binding CheckResult}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+    </Grid>
+</Window>
